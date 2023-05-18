@@ -1,15 +1,12 @@
 import fastify from 'fastify'
-import { PrismaClient } from '@prisma/client'
+import { memoriesRoutes } from './routes/memories'
+import cors from '@fastify/cors'
 const app = fastify()
-const prisma = new PrismaClient()
-// definindo uma rota: quando acessar hello mostre todos os usuários
-// HTTP method: GET
-app.get('/users', async () => {
-  const users = await prisma.user.findMany()
-  return users
+app.register(cors, {
+  origin: true, // todas URLS de front-end poderão acessar este backend
 })
-// criando uma api: ele precisa ouvir da porta 3333 e então, após executar a requisição
-// mostrar o console log que criei
+app.register(memoriesRoutes)
+
 app
   .listen({
     port: 3333,
