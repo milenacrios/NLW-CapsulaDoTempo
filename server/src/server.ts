@@ -10,6 +10,7 @@ import { uploadRoutes } from './routes/upload'
 import { resolve } from 'node:path'
 
 const app = fastify()
+
 app.register(require('@fastify/static'), {
   root: resolve(__dirname, '../uploads'),
   prefix: '/uploads',

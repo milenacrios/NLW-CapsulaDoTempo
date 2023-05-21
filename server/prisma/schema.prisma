@@ -9,7 +9,7 @@ datasource db {
 
 model User {
   id        String @id @default(uuid())
-  githubId  String @unique
+  githubId  Int    @unique
   name      String
   login     String
   avatarUrl String
@@ -21,10 +21,10 @@ model Memory {
   id     String @id @default(uuid())
   userId String
 
-  coverUrl  String
-  content   String
-  isPublic  Boolean  @default(false)
-  createdAt DateTime @default(now())
+  coverUrl String
+  content  String
+  isPublic Boolean  @default(false)
+  createAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id])
 }
